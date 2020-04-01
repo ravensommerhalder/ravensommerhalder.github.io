@@ -1,0 +1,478 @@
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: greyscale;
+}
+
+@import 'flexboxgrid';
+@import 'variables';
+
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: $pink;
+    overflow: hidden;
+    width: 100%;
+    cursor: url('../images/cursor_6.ico'), auto;
+}
+
+body.purple {
+    background-color: $purpledesktop;
+}
+
+
+h1 {
+    font-size: 43px;
+}
+
+h3{
+    font-size: 18px;
+}
+
+h4 {
+    font-size: 14px;
+    margin: 0px;
+    margin-top: 3px;
+}
+
+h5 {
+    font-family: $font-1;
+    color: white;
+    font-size: 16px;
+    margin: 0.25rem 0 0 0;
+}
+
+h6 {
+    font-size: 12px;
+    font-family: $font-3;
+    margin: 0;
+}
+
+p {
+    color: black;
+    font-family: $font-3;
+}
+
+.container-fluid {
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $primaryloading;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    .container{
+        height: 50vh;
+        position: relative;
+        text-align: center;
+        .bubble {
+            position: relative;
+        }
+        .loader-text{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: $font-2;
+            font-size: 70px;
+            color: $loadingtext;
+            -webkit-text-stroke: 2px black;
+            @media (max-width: 425px){
+                font-size: 5px;
+                -webkit-text-stroke: 1px black;
+            }
+        }
+
+        .loader-bar {
+            margin-top: 2rem;
+        }
+    }
+}
+
+/*Hover state for application: white backgrounds*/
+.app-icon:hover img,
+.app-icon:hover h5 {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav.top-bar {
+    z-index: 98;
+    position: relative;
+    background-color: $navbarpink;
+    color: white;
+    font-family: $font-1;
+    padding: 0.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 1px $navbarpinkshadow;
+
+    img {
+        vertical-align: middle;
+        margin-right: 1rem;
+    }
+
+    .dropdown-button {
+        display: inline-block;
+        text-decoration: none;
+        cursor: url('../images/cursor-pointer.ico'), pointer;
+    }
+
+    .white-heart,
+    .pink-heart {
+        display: none;
+
+        &.active {
+            display: inline-block;
+        }
+    }
+}
+
+.purple {
+    nav.top-bar {
+        background-color: $navbarpurple;
+        box-shadow: 0px 1px $navbarpurpleshadow;
+    }
+}
+
+/*Dropdown menu*/
+#dropdown {
+    background-color: white;
+    top: 50px;
+    left: 2rem;
+    padding: 2rem;
+    position: absolute;
+    display: none;
+    z-index: 999;
+
+    &.open {
+        display: block;
+    }
+}
+
+/*Size of box*/
+.box {
+    height: 60px;
+    width: 60px;
+    cursor: url('../images/cursor-pointer.ico'), pointer;
+
+    /*Pink square*/
+    &.pink {
+        background-color: $pink;
+        float: left;
+    }
+
+    /*Purple square*/
+    &.purple {
+        background-color: $purple;
+        float: right;
+    }
+
+    /*Pink hover selection*/
+    &.pink:hover {
+        border: 5px solid $pheartselected;
+    }
+
+    /*Purple hover selection*/
+    &.purple:hover {
+        border: 5px solid $purpheartselected;
+    }
+
+}
+
+
+.padding {
+    padding: 0rem .5rem;
+}
+
+.app-icons {
+    display: flex;
+    align-items: center;
+    height: 80vh;
+    position: relative;
+    z-index: 1;
+
+    .app-container {
+        display: flex;
+        padding-left: 3rem;
+
+        .app-icon-column {
+            display: inline-block;
+        }
+
+        .app-icon {
+            margin: 0 2rem 3rem 0.5rem;
+            text-align: center;
+            cursor: url('../images/cursor-pointer.ico'), pointer;
+        }
+    }
+}
+
+
+
+.app-icon.trash {
+    position: absolute;
+    cursor: url('../images/cursor-pointer.ico'), pointer;
+    right: 1rem;
+    bottom: 7rem;
+    text-align: center;
+
+    @media (min-width: 768px) {
+        right: 3rem;
+    }
+}
+
+
+.window {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: 5rem;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+    display: none;
+    .window-inner {
+        padding: 1rem;
+        min-width: 700px;
+        max-width: 700px;
+        height: 75vh;
+        overflow-y: scroll;
+        position: relative;
+    }
+
+    &.open {
+        display: flex;
+    }
+
+    .window-header {
+        font-family: $font-1;
+        color: white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        h2 {
+            margin: 0;
+        }
+    }
+
+    .window-close {
+        position: absolute;
+        cursor: url('../images/cursor-pointer.ico'), pointer;
+        top: 0;
+        right: 0;
+        padding: .5rem 1rem;
+    }
+
+    .blog-visual {
+        margin-top: 5px;
+    }
+
+    .blog {
+        background-color: white;
+        font-family: $font-2;
+        margin-top: 2rem;
+        .blog-post {
+            margin-bottom: 1rem;
+            padding: 0.9375rem;
+            padding-bottom: 5rem;
+            p {
+                margin-top: 0;
+            }
+            .inner-post {
+                margin-top: 5rem;
+            }
+
+            .inner-seperate-post{
+                margin-top: 0rem;
+            }
+        }
+    }
+}
+
+
+.school-projects {
+    .window-inner {
+        background-color: $yellow;
+        box-shadow: 15px 15px 3px rgba(116,107,77,0.5);
+        .window-header {
+            background-color: $yellow;
+        }
+        .blog {
+            color: $yellowtext;
+            .blog-post {
+                background-color: $lightyellow;
+            }
+        }
+    }
+}
+
+.ickiness {
+    left: 60%;
+    top: 60%;
+    .window-inner {
+        background-color: $green;
+        box-shadow: 15px 15px 3px rgba(70,96,57,0.5);
+        .window-header {
+            background-color: $green;
+        }
+        .blog {
+            color: $greentext;
+            .blog-post {
+                background-color: $lightgreen;
+            }
+        }
+    }
+}
+
+.do-gooding {
+    left: 30%;
+    top: 55%;
+    .window-inner {
+        background-color: $blue;
+        box-shadow: 15px 15px 3px rgba(55,90,105,0.5);
+        .window-header {
+            background-color: $blue;
+        }
+        .blog {
+            color: $bluetext;
+            .blog-post {
+                background-color: $lightblue;
+            }
+        }
+    }
+}
+
+.trashion {
+    .window-inner {
+        background-color: $magenta;
+        padding-top: 3rem;
+        box-shadow: 15px 15px 3px rgba(142,96,132,0.5);
+        max-height: 25rem;
+        overflow-y: auto;
+        .window-header {
+            background-color: $magenta;
+        }
+        .app-icons {
+            height: 100%;
+            width: 100%;
+            background-color: $lightmagenta;
+        }
+    }   
+}
+
+.file-card {
+    display: flex;
+    align-items: center;
+}
+
+.trashion-files {
+    display: flex;
+}
+
+
+.controls {
+    background-color: $lightpurple;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin: 0;
+    width: 100%;
+    .play{
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+}
+
+.skip-next-button, .skip-previous-button {
+    cursor: url('../images/cursor-pointer.ico'), pointer;  
+}
+
+.pause-button, .play-button {
+    display: none;
+    cursor: url('../images/cursor-pointer.ico'), pointer;
+    &.active {
+        display: inline-block;
+    }
+}
+
+.time-fill-in {
+    display: none;
+    color: $purpletext;
+    font-family: $font-3;
+    font-size: 0.875rem;
+    &.active {
+        display: inline-block;
+    } 
+}
+
+.current-time {
+    color: $purpletext;
+    font-family: $font-3;
+    font-size: 0.875rem;
+}
+
+
+.mp3-jams{
+    .window-inner{
+        max-height: 28rem;
+        min-width: 16.2rem;
+        background-color: $purple;
+        box-shadow: 15px 15px 3px rgba(97,96,142,0.5);
+        overflow-y: auto;
+            .window-header {
+                background-color: $purple;
+            }
+            .mp3-title {
+                font-family: $font-2;
+                font-size: 15px;
+                margin-left: .10rem;  
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+                .mp3-inner {
+                    margin-top: 1.8rem;
+                    min-width: 13.25rem;
+                    background-color: $lightpurple;
+                    color: $purpletext;
+                    font-family: $font-2;
+                    font-size: 15px;
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    margin-bottom: 2rem;
+                    .song {
+                        margin-left: 1rem;
+                        min-width: 11rem;
+                        margin-bottom: 1.5rem;
+                        padding-top: 8px;
+                        padding-bottom: 8px;
+                        background-color: $medpurple;
+                        cursor: url('../images/cursor-pointer.ico'), pointer;
+                        &.selected-song {
+                            background-color: $purpletext;
+                            color: white;
+                        }
+                    }
+                }             
+    }
+}
+
